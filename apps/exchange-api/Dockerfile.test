@@ -1,0 +1,16 @@
+FROM gradle:5.1-jdk8-alpine
+
+WORKDIR /test
+
+COPY build.gradle.kts .
+COPY settings.gradle.kts .
+COPY gradle.properties .
+
+COPY apps apps
+COPY components components
+
+USER root
+RUN chown -R gradle /test
+USER gradle
+
+CMD gradle :exchange-api:buildNeeded --info && gradle :exchange-api:test --info

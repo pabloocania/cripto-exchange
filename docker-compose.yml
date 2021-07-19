@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  openbet-player-api:
+    image: exchange-api
+    build:
+      context: .
+      dockerfile: openbet/openbet-player-api/Dockerfile
+      

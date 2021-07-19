@@ -1,0 +1,25 @@
+<configuration>
+	<variable name="APP_LOG_LEVEL" value="${APP_LOG_LEVEL:-INFO}" />
+
+	<!-- Configure the Console appender -->
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- Configure the Sentry appender, overriding the logging threshold to the WARN level
+	<appender name="Sentry" class="io.sentry.logback.SentryAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>WARN</level>
+		</filter>
+	</appender>
+ -->
+
+	<!-- Enable the Console and Sentry appenders, Console is provided as an example
+	of a non-Sentry logger that is set to a different logging threshold -->
+	<root level="${APP_LOG_LEVEL}">
+		<appender-ref ref="Console" />
+		<appender-ref ref="Sentry" />
+	</root>
+</configuration>
